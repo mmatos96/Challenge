@@ -46,3 +46,5 @@ BODY - ```json
 "rank":8.8
 }```
 
+O formato das datas enviadas nos pedidos deve ser o seguinte, yyyy-MM-dd (ex: 2021-12-01)
+
