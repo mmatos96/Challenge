@@ -7,7 +7,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class TestDataLoader implements ApplicationRunner {
@@ -21,12 +22,10 @@ public class TestDataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-
-        movieRepository.save(new Movie("The Fast and The Furious", simpleDateFormat.parse("2001/07/22"),6.8, 207305509L));
-        movieRepository.save(new Movie("Avatar", simpleDateFormat.parse("2009/12/19"),7.8, 2847305509L));
-        movieRepository.save(new Movie("Home Alone", simpleDateFormat.parse("1991/01/25"),7.3, 476305509L));
-        movieRepository.save(new Movie("About Time", simpleDateFormat.parse("2013/10/31"), 7.8, 87100449L));
+        movieRepository.save(new Movie("The Fast and The Furious", LocalDate.parse("2001-07-22", DateTimeFormatter.ofPattern("yyyy-MM-dd")),6.8, 207305509L));
+        movieRepository.save(new Movie("Avatar", LocalDate.parse("2009-12-19", DateTimeFormatter.ofPattern("yyyy-MM-dd")),7.8, 2847305509L));
+        movieRepository.save(new Movie("Home Alone", LocalDate.parse("1991-01-25", DateTimeFormatter.ofPattern("yyyy-MM-dd")),7.3, 476305509L));
+        movieRepository.save(new Movie("About Time", LocalDate.parse("2013-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd")), 7.8, 87100449L));
         System.out.println("All test data was loaded");
     }
 }

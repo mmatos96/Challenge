@@ -9,6 +9,8 @@ import com.challenge.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +22,10 @@ public class MovieService {
 
     public List<MovieDTO> getAllMovies() {
         return movieRepository.findAll().stream().map(Movie::toMovieDTO).collect(Collectors.toList());
+    }
+
+    public List<MovieDTO> getMoviesByDate(LocalDate date) {
+        return movieRepository.findAllByReleaseDate(date).stream().map(Movie::toMovieDTO).collect(Collectors.toList());
     }
 
     public MovieDTO getMovie(String name) throws MovieNotFoundException {

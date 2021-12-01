@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -15,7 +15,7 @@ public class MovieDTO {
 
     private final String title;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private final Date releaseDate;
+    private final LocalDate releaseDate;
     private final Double rank;
     private final long revenue;
 

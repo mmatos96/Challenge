@@ -6,9 +6,12 @@ import com.challenge.exceptions.MovieNotCreatedException;
 import com.challenge.exceptions.MovieNotFoundException;
 import com.challenge.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,6 +29,11 @@ public class MovieController {
     @GetMapping("/{name}")
     public ResponseEntity<MovieDTO> getMovie(@PathVariable final String name) throws MovieNotFoundException {
         return ResponseEntity.ok(movieService.getMovie(name));
+    }
+
+    @GetMapping("/filterByDate/{releaseDate}")
+    public ResponseEntity<List<MovieDTO>> getMovie(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") final LocalDate releaseDate) throws MovieNotFoundException {
+        return ResponseEntity.ok(movieService.getMoviesByDate(releaseDate));
     }
 
     @DeleteMapping("/{name}")
